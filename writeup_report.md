@@ -83,31 +83,31 @@ Finally I improved my training data by first removing bias towards zero angle st
 
 The final model architecture consisted of a convolution neural network with the following layers and layer sizes:
 
-Input: 160 X 320 X 3
-Lambda (Normalization) Layer
-Cropping Layer: output size: 60 X 280 X 3
-convolution size:5 X 5 output size: 60 X 280 X 16 padding:"same"  activation = 'relu'
-convolution size:5 X 5 output size: 60 X 280 X 16 padding:"same" activation='relu'
-maxPooling size: 2 X 2
-convolution size:5 X 5 output size: 30 X 140 X 24 padding:"same" activation='relu'
-convolution size:5 X 5 output size: 30 X 140 X 24 padding:"same" activation='relu'
-maxPooling size: 2 X 2
-convolution size:5 X 5 output size: 15 X 70 X 32 padding:"same" activation='relu'
-convolution size:5 X 5 output size: 15 X 70 X 32 padding:"same" activation='relu'
-maxPooling size: 2 X 2
-convolution size:5 X 5 output size: 7 X 35 X 48 padding:"same" activation='relu'
-convolution size:5 X 5 output size: 7 X 35 X 48 padding:"same" activation='relu'
-maxPooling size: 2 X 2
-convolution size:5 X 5 output size: 3 X 17 X 64 padding:"same" activation='relu'
-convolution size:5 X 5 output size: 3 X 17 X 64 padding:"same" activation='relu'
+Input: 160 X 320 X 3  
+Lambda (Normalization) Layer  
+Cropping Layer: output size: 60 X 280 X 3  
+convolution size:5 X 5 output size: 60 X 280 X 16 padding:"same"  activation = 'relu'  
+convolution size:5 X 5 output size: 60 X 280 X 16 padding:"same" activation='relu'  
+maxPooling size: 2 X 2  
+convolution size:5 X 5 output size: 30 X 140 X 24 padding:"same" activation='relu'  
+convolution size:5 X 5 output size: 30 X 140 X 24 padding:"same" activation='relu'  
+maxPooling size: 2 X 2  
+convolution size:5 X 5 output size: 15 X 70 X 32 padding:"same" activation='relu'  
+convolution size:5 X 5 output size: 15 X 70 X 32 padding:"same" activation='relu'  
+maxPooling size: 2 X 2  
+convolution size:5 X 5 output size: 7 X 35 X 48 padding:"same" activation='relu'  
+convolution size:5 X 5 output size: 7 X 35 X 48 padding:"same" activation='relu'  
+maxPooling size: 2 X 2  
+convolution size:5 X 5 output size: 3 X 17 X 64 padding:"same" activation='relu'  
+convolution size:5 X 5 output size: 3 X 17 X 64 padding:"same" activation='relu'  
 Flatten Output: 1 X 3264    
 DropOut (prob: 0.2)   
-Fully Connected Layer output: 100 activation: 'relu'   
+Fully Connected Layer output size: 100 activation: 'relu'   
 DropOut (prob: 0.2)   
-Fully Connected Layer output: 50 activation: 'relu'   
+Fully Connected Layer output size: 50 activation: 'relu'   
 DropOut (prob: 0.2)   
-Fully Connected Layer output: 10 activation: 'relu'   
-Fully Connected Layer 1   
+Fully Connected Layer output size: 10 activation: 'relu'   
+Fully Connected Layer output size: 1   
 
 
 ####3. Creation of the Training Set & Training Process
@@ -116,28 +116,33 @@ I used Udacity provided training dataset.
 
 Below are some sample images from this dataset.
 
-CENTER CAMERA IMAGE 
+CENTER CAMERA IMAGE   
 ![center camera image][image1]
+  
 
-LEFT CAMERA IMAGE  
+LEFT CAMERA IMAGE   
 ![left camera image][image2]
 
-RIGHT CAMERA IMAGE  
+  
+RIGHT CAMERA IMAGE    
 ![right camera image][image3]
 
 To use left and right camera images, I apply steering adjustment of 0.25 around center. 
 
-To get better driving output, I cropped the image for road only section reducing dimensions as shown below 
+To get better driving output, I cropped the image for road only section reducing dimensions as shown below  
+
 ![cropped image][image4]
 
-I also flipped images and angles to introduce postive angle images. For example, here is an image that has then been flipped:
+I also flipped images and angles to introduce postive angle images. For example, here is an image that has then been flipped:  
+
 ![flipped image][image5]
 
-I also introduced random brightness in images. Here is one of such image.
+I also introduced random brightness in images. Here is one of such image.  
+
 ![bright image][image6]
 
-I had around 15K images after filtering out more than half of images with low steering angles and including left and right camera images. After augmenting with flipping and random brightness my number of training data points is doubled.
+I had around 15K images after filtering out more than half of images with low steering angles and including left and right camera images. After augmenting with flipping and random brightness my number of training data points is doubled.   
 
-I finally randomly shuffled the data set and put 20% of the data into a validation set. 
+I finally randomly shuffled the data set and put 20% of the data into a validation set.   
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The number of epochs was chosen as 3 after various experiments to find converging value of loss on validation data. I used an adam optimizer so that manually training the learning rate wasn't necessary.
